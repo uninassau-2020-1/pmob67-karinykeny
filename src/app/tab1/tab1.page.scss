@@ -1,3 +1,18 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+ion-img {
+  width: 100%;
+}
+
+span {
+  color: red;
+  font-weight: bold;
+}
+
+.erro {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
