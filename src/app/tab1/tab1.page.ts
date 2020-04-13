@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page{
+
   length = 8;
   valorDoCep: boolean = false;
   msg: string = "";
@@ -14,7 +15,7 @@ export class Tab1Page{
 
   constructor(private http: HttpClient) {}
 
-  reset(cep) {
+  reset() {
     this.endereco = {};
     this.valorDoCep = false;
   }
@@ -26,13 +27,12 @@ export class Tab1Page{
     }
   }
 
-  consultarEndereco(cep) {
+  consultarEndereco( cep ) {
     this.validacao(cep);
     if ( this.valorDoCep == false) {
       var urlApi = `http://viacep.com.br/ws/${cep}/json/`;
      this.http.get(urlApi).subscribe(consulta => {
       this.endereco = consulta;
-      cep = "";
      });
     }   
   }
