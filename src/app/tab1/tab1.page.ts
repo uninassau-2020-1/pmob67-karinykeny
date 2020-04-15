@@ -34,7 +34,6 @@ export class Tab1Page{
   consultarEndereco( cep ) {
     this.valorDoCep = false;
     this.form = cep.form.value;
-    console.log("1 :" + this.form)
     this.validacao(this.form);
     if ( this.valorDoCep == false) {
       var urlApi = `http://viacep.com.br/ws/${this.form.cep}/json/`;
