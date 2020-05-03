@@ -1,7 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IonInput } from '@ionic/angular';
-import { Button } from 'protractor';
 
 @Component({
   selector: 'app-tab1',

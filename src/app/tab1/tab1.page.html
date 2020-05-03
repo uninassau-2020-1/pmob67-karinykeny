@@ -33,44 +33,7 @@
     <ion-img class="center" src="assets/icon/aqui.png"></ion-img>
   </ion-list>
   
-  <ion-list *ngIf="endereco.cep" class="endereco">
-    <ion-item>
-      <ion-label>CEP:</ion-label>
-      <ion-input>{{ endereco.cep }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.logradouro">
-      <ion-label>Logradouro: </ion-label>
-      <ion-input>{{ endereco.logradouro }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.complemento">
-      <ion-label>Complemento: </ion-label>
-      <ion-input>{{ endereco.complemento }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.bairro">
-      <ion-label>Bairro: </ion-label>
-      <ion-input>{{ endereco.bairro }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.localidade">
-      <ion-label>Cidade: </ion-label>
-      <ion-input>{{ endereco.localidade }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.uf">
-      <ion-label>UF: </ion-label>
-      <ion-input>{{ endereco.uf }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.unidade">
-      <ion-label>Unidade: </ion-label>
-      <ion-input>{{ endereco.unidade }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.ibge">
-      <ion-label>IBGE: </ion-label>
-      <ion-input>{{ endereco.ibge }}</ion-input>
-    </ion-item>
-    <ion-item *ngIf="endereco.gia">
-      <ion-label>GIA: </ion-label>
-      <ion-input>{{ endereco.gia }}</ion-input>
-    </ion-item>
-  </ion-list>
+  <app-explore-container *ngIf="endereco.cep" class="endereco" [endereco]="endereco"></app-explore-container>
 
   <ion-list *ngIf="endereco.erro" align="center">
     <br>
