@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+declare var google;
 
 @Component({
   selector: 'app-explore-container',
@@ -6,10 +7,24 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./explore-container.component.scss'],
 })
 export class ExploreContainerComponent implements OnInit {
-  @Input() endereco: any = {};
+  
+  @ViewChild("map", {static: false}) element: ElementRef;
+  map: any;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit(): void { 
+    console.log(this.initMap());
+    this.initMap();
+  }
 
+  initMap(): void {
+    this.map = new google.maps.Map(
+      this.element.nativeElement, 
+      {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+  
 }
