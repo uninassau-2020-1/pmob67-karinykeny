@@ -20,6 +20,7 @@ export class Tab1Page {
   urlMaps: String;
   lat: any;
   lng: any;
+  mapErro: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -58,14 +59,25 @@ export class Tab1Page {
     var urlApi = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=AIzaSyA3mJNC9IubR7M6WNvWaEhMGplG8WUVuPE`;
       this.http.get(urlApi).subscribe(query => {
         this.address2 = query;
-        this.lat = this.address2.results[0].geometry.location.lat;
-        this.lng = this.address2.results[0].geometry.location.lng;
-        this.map = new google.maps.Map(document.getElementById("map"), {
-          center: {lat: this.lat, lng: this.lng},
+        if(this.address2.status != "ZERO_RESULTS"){
+          this.lat = this.address2.results[0].geometry.location.lat;
+          this.lng = this.address2.results[0].geometry.location.lng;
+          var uluru = {lat: this.lat, lng: this.lng};
+          this.map = new google.maps.Map(document.getElementById("map"), {
+          center: uluru,
           zoom: 17,
-        });
-        document.getElementById("map").style.display = "block";
+          });
+          var marker = new google.maps.Marker({
+          position: uluru,
+          map: this.map
+          });
+          document.getElementById("map").style.display = "block";
+        } else {
+          document.getElementById("map").style.display = "none";
+          this.mapErro = true;
+        }
       });
   }
 
 }
+

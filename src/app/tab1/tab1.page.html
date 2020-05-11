@@ -35,6 +35,9 @@
   
   <div #mapApp id="map" style="height: 40%;"></div>
   <ion-list *ngIf="address.cep">
+    <ion-item *ngIf="mapErro">
+      <ion-label style="color: red;">Mapa não encontrado!</ion-label>
+    </ion-item>
     <ion-item>
       <ion-label>CEP:</ion-label>
       <ion-input>{{ address.cep }}</ion-input>
