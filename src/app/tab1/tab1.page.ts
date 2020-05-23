@@ -56,7 +56,7 @@ export class Tab1Page {
   }
 
   initMap(cep): void {
-    var urlApi = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=AIzaSyA3mJNC9IubR7M6WNvWaEhMGplG8WUVuPE`;
+    var urlApi = `https://maps.googleapis.com/maps/api/geocode/json?address=${cep}&key=AIzaSyDGVrbRBBJ2lvV-CePbC2sBeFDwPTAGjAo`;
       this.http.get(urlApi).subscribe(query => {
         this.address2 = query;
         if(this.address2.status != "ZERO_RESULTS"){

@@ -1,7 +1,8 @@
 {
   "name": "kenyApp",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
