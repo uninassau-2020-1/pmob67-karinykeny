@@ -20,6 +20,9 @@ export class LoginPage implements OnInit {
     private route: Router) { }
 
   ngOnInit() {
+    document.getElementById("entrada-dados").style.display = "none";
+    document.getElementById("entrada").style.display = "block";
+    document.getElementById("saida").style.display = "none";
   }
 
   entrar() {
@@ -31,7 +34,9 @@ export class LoginPage implements OnInit {
       .then(res =>{
         this.user = res;
         this.getData();
-        console.log(res);
+        document.getElementById("entrada-dados").style.display = "block";
+        document.getElementById("entrada").style.display = "none";
+        document.getElementById("saida").style.display = "block";
       })
       .catch(err => console.error(err));
     console.log("aqui");
@@ -41,7 +46,7 @@ export class LoginPage implements OnInit {
     this.http.get('https://www.googleapis.com/plus/v1/people/me?access_token=' + this.user.acessToken)
       .subscribe( (data: any) => {
         this.user.name = data.displayName;
-        this.user.image = data.image.url;
+        this.user.picture = data.imageUrl;
       });
   }
 
@@ -49,6 +54,9 @@ export class LoginPage implements OnInit {
     this.googlePlus.logout()
       .then(() => {
         console.log("logged out");
+        document.getElementById("entrada-dados").style.display = "none";
+        document.getElementById("entrada").style.display = "block";
+        document.getElementById("saida").style.display = "none";
       });
   }
 
