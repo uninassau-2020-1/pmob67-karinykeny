@@ -1,3 +1,5 @@
+import { SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { DatabeseService } from './../providers/databese.service';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,7 +24,7 @@ export class Tab1Page {
   lng: any;
   mapErro: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private db: DatabeseService) { }
 
   reset(): void {
     this.address = {};
@@ -47,6 +49,7 @@ export class Tab1Page {
       var urlApi = `http://viacep.com.br/ws/${this.form.cep}/json/`;
       this.http.get(urlApi).subscribe(query => {
       this.address = query;
+      this.insertDB(this.address);
       });
       if(!this.address.erro){
         this.initMap(this.form.cep);
@@ -77,6 +80,19 @@ export class Tab1Page {
           this.mapErro = true;
         }
       });
+  }
+
+  insertDB(value: any): void{
+    var endereco = JSON.stringify(value);
+    this.db.getBD().then((db: SQLiteObject) => {
+      let sql = 'insert into endereco(end) values (?)';
+      let end = [endereco];
+      db.executeSql(sql, end).then(() => {
+        alert("inserido com sucesso!")
+      }).catch(e => {
+        console.error(e);
+      })
+    });
   }
 
 }

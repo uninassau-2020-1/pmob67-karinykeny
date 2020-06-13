@@ -26,9 +26,33 @@ export class DatabeseService {
 
   private createTable(db: SQLiteObject) {
     return db.sqlBatch(
-     ['CREATE TABLE IF NOT EXISTS endereco(id int IDENTITY(1,1) PRIMARY KEY, end varchar);'] 
+     ['CREATE TABLE IF NOT EXISTS endereco(end VARCHAR);'] 
     ).then(() => {
       console.log("Deu certo")
+    }).catch(e => {
+      console.error(e);
+    });
+  }
+
+  public selectDB(){
+    return this.getBD().then((db: SQLiteObject) => {
+      let sql = 'select * from endereco';
+      let end: any[];
+      return db.executeSql(sql, end).then((end: any) => {
+        let enderecos = new Array<any>();
+        if(end.rows.length > 0){
+          for (var i=0; i<end.rows.length; i++){
+            let temp = end.rows.item(i);
+            enderecos.push(temp);
+          }
+          return enderecos;
+        }else{
+          return new Array<any>();
+        }
+        
+      }).catch(e => {
+        console.error(e);
+      })
     }).catch(e => {
       console.error(e);
     });
