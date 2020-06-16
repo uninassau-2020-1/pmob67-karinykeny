@@ -88,7 +88,6 @@ export class Tab1Page {
       let sql = 'insert into endereco(end) values (?)';
       let end = [endereco];
       db.executeSql(sql, end).then(() => {
-        alert("inserido com sucesso!")
       }).catch(e => {
         console.error(e);
       })

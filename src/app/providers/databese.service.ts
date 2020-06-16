@@ -26,7 +26,7 @@ export class DatabeseService {
 
   private createTable(db: SQLiteObject) {
     return db.sqlBatch(
-     ['CREATE TABLE IF NOT EXISTS endereco(end VARCHAR);'] 
+     ['CREATE TABLE IF NOT EXISTS endereco(id INTEGER PRIMARY KEY, end VARCHAR);'] 
     ).then(() => {
       console.log("Deu certo")
     }).catch(e => {
@@ -56,5 +56,15 @@ export class DatabeseService {
     }).catch(e => {
       console.error(e);
     });
+  }
+
+  deleteDBTotal(){
+    return this.getBD().then((db: SQLiteObject) => {
+      let sql = 'delete from endereco';
+      let end: any[];
+      return db.executeSql(sql, end).then(() => {
+        console.log("endereço excluido")
+      }).catch(e => console.error(e));
+    }).catch(e => console.error(e));
   }
 }
